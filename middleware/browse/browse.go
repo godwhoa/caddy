@@ -51,6 +51,7 @@ type Listing struct {
 type FileInfo struct {
 	IsDir   bool
 	Name    string
+	FileExt string
 	Size    int64
 	URL     string
 	ModTime time.Time
@@ -153,6 +154,7 @@ func (b Browse) ServeHTTP(w http.ResponseWriter, r *http.Request) (int, error) {
 			fileinfos = append(fileinfos, FileInfo{
 				IsDir:   f.IsDir(),
 				Name:    f.Name(),
+				FileExt: path.Ext(name),
 				Size:    f.Size(),
 				URL:     url.String(),
 				ModTime: f.ModTime(),
